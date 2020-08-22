@@ -9,7 +9,7 @@ do
     cd "${lang}/" || exit 1
 
     LANG="$(echo "${lang}" | cut -d'/' -f2)"
-    CONTAINER="ifaisalalam/ide-worker-${LANG}"
+    CONTAINER="ssit/ide-worker-${LANG}"
 
     docker image rm "${CONTAINER}" 2> /dev/null
     docker build -t "${CONTAINER}" .

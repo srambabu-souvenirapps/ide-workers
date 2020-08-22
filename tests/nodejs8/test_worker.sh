@@ -21,7 +21,7 @@ docker run \
     --read-only \
     -v "$RUN_BOX":/var/box \
     -w /var/box \
-    ifaisalalam/ide-worker-nodejs8 \
+    ssit/ide-worker-nodejs8 \
     bash -c "/bin/compile.sh && /bin/run.sh"
 
 ls -lh "${RUN_BOX}"

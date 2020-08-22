@@ -21,7 +21,7 @@ docker run \
     --read-only \
     -v "$RUN_BOX":/var/box \
     -w /var/box \
-    ifaisalalam/ide-worker-python3 \
+    ssit/ide-worker-python3 \
     bash -c "/bin/compile.sh && /bin/run.sh"
 
 ls -lh "${RUN_BOX}"
