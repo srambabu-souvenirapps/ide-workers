@@ -48,4 +48,4 @@ notifications:
     on_success: always
     on_failure: always
     recipients:
-      - tech@ctfhub.io
+      - srambabu@souvenirapps.com
