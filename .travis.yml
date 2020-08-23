@@ -1,51 +1,50 @@
 language: generic
 sudo: required
-
 branches:
   only:
-    - master
-
+  - master
 env:
   global:
-    - PATH=${TRAVIS_BUILD_DIR/bats/bin}:${PATH}
-
+  - PATH=${TRAVIS_BUILD_DIR/bats/bin}:${PATH}
 addons:
   apt:
     packages:
-      - bash
-
+    - bash
 services:
-  - docker
-
+- docker
 jobs:
   include:
-    - stage: test
-      before_install:
-        - sudo chmod +x build.sh
-        - sudo chmod +x test.sh
-      before_script:
-        - ./build.sh
-      script:
-        - ./test.sh
-
-    - stage: deploy
-      before_install:
-        - sudo chmod +x build.sh
-        - sudo chmod +x test.sh
-        - sudo chmod +x push_docker_images.sh
-      before_script:
-        - ./build.sh
-      script:
-        - ./test.sh && ./push_docker_images.sh
-
+  - stage: test
+    before_install:
+    - sudo chmod +x build.sh
+    - sudo chmod +x test.sh
+    before_script:
+    - "./build.sh"
+    script:
+    - "./test.sh"
+  - stage: deploy
+    before_install:
+    - sudo chmod +x build.sh
+    - sudo chmod +x test.sh
+    - sudo chmod +x push_docker_images.sh
+    before_script:
+    - "./build.sh"
+    script:
+    - "./test.sh && ./push_docker_images.sh"
+    deploy: 
+    provider: gae
+    keyfile: ide-api-3c305-af49e820339f.json.enc
+    project: ide-api-3c305
 stages:
-  - name: test
-  - name: deploy
-    if: type = push
-
+- name: test
+- name: deploy
+  if: type = push
 notifications:
   email:
     on_success: always
     on_failure: always
     recipients:
-      - srambabu@souvenirapps.com
+    - srambabu@souvenirapps.com
+before_install:
+- openssl aes-256-cbc -K $encrypted_158b2e2634a2_key -iv $encrypted_158b2e2634a2_iv
+  -in ide-api-3c305-af49e820339f.json.enc -out ide-api-3c305-af49e820339f.json -d
